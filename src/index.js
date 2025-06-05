@@ -9,9 +9,7 @@ import jsonData from './filmstocks.json';
 import reportWebVitals from './reportWebVitals';
 import logo from './img/desktop-logo-small.png'
 
-
-
-function Start() {
+function LoadPage() {
   const [selectedValue, setSelectedValue] = useState(null);
   const handleChange = (selectedValue) => {
     setSelectedValue(selectedValue);
@@ -23,7 +21,7 @@ function Start() {
   const styles = {
   container: (base) => ({
     ...base,
-    flex: 1,
+    flex: 1
   })};
   return (
     <div >
@@ -65,7 +63,7 @@ function Start() {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Start />
+    <LoadPage />
   </React.StrictMode>
 );
 
