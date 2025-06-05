@@ -9,27 +9,26 @@ import reportWebVitals from './reportWebVitals';
 import logo from './img/desktop-logo-small.png'
 
 function Start() {
-  const options = jsonData.map((option) => 
-    <option key={option.process} value={option.film}>{option.film}</option>
-  );
-  
   return (
-    <div>
+    <div >
       <div style={{
       display: 'flex',
       alignItems: 'center',
       marginTop: '200px',
-      justifyContent: 'center',}}>
+      justifyContent: 'center'}}>
       <img src={logo} />
       </div>
 
       <div style={{
-      display: 'flex',
       alignItems: 'center',
+      width: '500px',
       marginTop: '10px',
-      justifyContent: 'center',}}>
-        
-      <Select options={jsonData.map((option) => ({
+      margin: 'auto',
+      justifyContent: 'center'}}>
+
+      <Select 
+        placeholder="Select a film stock"
+        options={jsonData.map((option) => ({
         value: option.label,
         label: option.film}))}/>
       
