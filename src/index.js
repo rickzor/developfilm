@@ -1,13 +1,47 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
 import './index.css';
 import App from './App';
+import jsonData from './filmstocks.json';
 import reportWebVitals from './reportWebVitals';
+import logo from './img/desktop-logo-small.png'
+
+function Start() {
+  const options = jsonData.map((option) => 
+    <option key={option.process} value={option.film}>{option.film}</option>
+  );
+  
+  return (
+    <div>
+    <div style={{
+    display: 'flex',
+    alignItems: 'center',
+    marginTop: '200px',
+    justifyContent: 'center',}}>
+    <img src={logo} />
+    </div>
+
+    <div style={{
+    display: 'flex',
+    alignItems: 'center',
+    marginTop: '10px',
+    justifyContent: 'center',}}>
+    <select>
+        {options}
+    </select>
+    
+    </div>
+    </div>
+  );
+  
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Start />
   </React.StrictMode>
 );
 

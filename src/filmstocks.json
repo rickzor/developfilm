@@ -1,0 +1,117 @@
+[
+  {
+    "film": "Kodak Portra 160",
+    "type": "Color Negative",
+    "process": "C-41"
+  },
+  {
+    "film": "Kodak Portra 400",
+    "type": "Color Negative",
+    "process": "C-41"
+  },
+  {
+    "film": "Kodak Portra 800",
+    "type": "Color Negative",
+    "process": "C-41"
+  },
+  {
+    "film": "Kodak Ektar 100",
+    "type": "Color Negative",
+    "process": "C-41"
+  },
+  {
+    "film": "Kodak Gold 200",
+    "type": "Color Negative",
+    "process": "C-41"
+  },
+  {
+    "film": "Kodak Ultramax 400",
+    "type": "Color Negative",
+    "process": "C-41"
+  },
+  {
+    "film": "Kodak ColorPlus 200",
+    "type": "Color Negative",
+    "process": "C-41"
+  },
+  {
+    "film": "Kodak Ektachrome E100",
+    "type": "Color Reversal (Slide)",
+    "process": "E-6"
+  },
+  {
+    "film": "Fujifilm Provia 100F",
+    "type": "Color Reversal (Slide)",
+    "process": "E-6"
+  },
+  {
+    "film": "Fujifilm Velvia 50",
+    "type": "Color Reversal (Slide)",
+    "process": "E-6"
+  },
+  {
+    "film": "Fujifilm Superia X-TRA 400",
+    "type": "Color Negative",
+    "process": "C-41"
+  },
+  {
+    "film": "Lomography Color Negative 100",
+    "type": "Color Negative",
+    "process": "C-41"
+  },
+  {
+    "film": "Lomography LomoChrome Purple XR",
+    "type": "Experimental Color Negative",
+    "process": "C-41"
+  },
+  {
+    "film": "Kodak Tri-X 400",
+    "type": "Black and White Negative",
+    "process": "B&W"
+  },
+  {
+    "film": "Ilford HP5 Plus 400",
+    "type": "Black and White Negative",
+    "process": "B&W"
+  },
+  {
+    "film": "Ilford Delta 100",
+    "type": "Black and White Negative",
+    "process": "B&W"
+  },
+  {
+    "film": "Ilford Delta 400",
+    "type": "Black and White Negative",
+    "process": "B&W"
+  },
+  {
+    "film": "Ilford FP4 Plus 125",
+    "type": "Black and White Negative",
+    "process": "B&W"
+  },
+  {
+    "film": "Ilford Pan F Plus 50",
+    "type": "Black and White Negative",
+    "process": "B&W"
+  },
+  {
+    "film": "Foma Fomapan 100 Classic",
+    "type": "Black and White Negative",
+    "process": "B&W"
+  },
+  {
+    "film": "Kentmere 400",
+    "type": "Black and White Negative",
+    "process": "B&W"
+  },
+  {
+    "film": "Cinestill BWXX",
+    "type": "Black and White Negative",
+    "process": "B&W"
+  },
+  {
+    "film": "Rollei Retro 80S",
+    "type": "Black and White Negative",
+    "process": "B&W"
+  }
+]
