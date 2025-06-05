@@ -15,24 +15,25 @@ function Start() {
   
   return (
     <div>
-    <div style={{
-    display: 'flex',
-    alignItems: 'center',
-    marginTop: '200px',
-    justifyContent: 'center',}}>
-    <img src={logo} />
-    </div>
+      <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      marginTop: '200px',
+      justifyContent: 'center',}}>
+      <img src={logo} />
+      </div>
 
-    <div style={{
-    display: 'flex',
-    alignItems: 'center',
-    marginTop: '10px',
-    justifyContent: 'center',}}>
-    <select>
-        {options}
-    </select>
-    
-    </div>
+      <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      marginTop: '10px',
+      justifyContent: 'center',}}>
+        
+      <Select options={jsonData.map((option) => ({
+        value: option.label,
+        label: option.film}))}/>
+      
+      </div>
     </div>
   );
   
