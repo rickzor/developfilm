@@ -12,6 +12,6 @@ import Quiz from './quiz';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-   <App />
+   <Quiz />
   </React.StrictMode>
 );

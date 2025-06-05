@@ -2,56 +2,57 @@ import React, { useState } from 'react';
 
 function Quiz() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [score, setScore] = useState(0);
+  const [response, setResponse] = useState(0);
+  const [affiliateLink, setLink] = useState(0);
   const [showResult, setShowResult] = useState(false);
+  const [showNo, setShowNo] = useState(false);
     const questions = [
         {
-            text: "Is the sky blue?",
-            answer: "yes"
+            text: "Do you have a dev tank?"
         },
         {
-            text: "Does 1 + 1 = 3?",
-            answer: "no"
+            text: "Do you have a dark room or change bag?"
         },
         {
-            text: "Is water wet?",
-            answer: "yes"
+            text: "Do you have the developing chemistry mixed?"
+        },
+        {
+            text: "Is the chemistry the proper temperature?"
         }
     ];
 
   const handleAnswer = (userAnswer) => {
-    if (questions[currentQuestion].text === "Is the sky blue?")
-    {
-      if (userAnswer === questions[currentQuestion].answer){
-        setScore(score + 1);
-      }
-      else {
-        setScore(score - 1);
-      }
-    }
+    
 
-    if (questions[currentQuestion].text === "Does 1 + 1 = 3?")
-    {
-      if (userAnswer === questions[currentQuestion].answer){
-        setScore(score + 2);
-      }
-      else {
-        setScore(score - 1);
-      }
-    }
+    if (userAnswer === "no") {
+        if (questions[currentQuestion].text === "Do you have a dev tank?")
+        {
+             setResponse("Consider purchasing a dev tank.");
+             setLink("https://amzn.to/4kDmAvt");
+        }
 
-    if (questions[currentQuestion].text === "Is water wet?")
-    {
-      if (userAnswer === questions[currentQuestion].answer){
-        setScore(score + 3);
-      }
-      else {
-        setScore(score - 1);
-      }
+        if (questions[currentQuestion].text === "Do you have a dark room or change bag?")
+        {
+            setResponse("Consider purchasing a change bag.");
+            setLink("https://amzn.to/4jMZgdG");
+        }
+
+        if (questions[currentQuestion].text === "Do you have the developing chemistry mixed?")
+        {
+            setResponse("Consider purchasing chemistry.");
+            setLink("https://amzn.to/45JUDgS");
+        }
+
+        if (questions[currentQuestion].text === "Is the chemistry the proper temperature?")
+        {
+            setResponse("Consider purchasing a thermometer.");
+            setLink("https://amzn.to/45cgWvE");
+        }
+        setShowNo(true);
     }
 
     const nextQuestion = currentQuestion + 1;
-    if (nextQuestion < questions.length) {
+    if (nextQuestion < questions.length && userAnswer === "yes") {
       setCurrentQuestion(nextQuestion);
     } else {
       setShowResult(true);
@@ -60,9 +61,24 @@ function Quiz() {
 
   return (
     <div className="quiz-container">
-      {showResult ? (
+      {showNo ? (
         <div className="result">
-          <h2>You scored {score} out of {questions.length}</h2>
+          <h2>{response}</h2>
+          <button onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href=affiliateLink}}>Buy here</button>
+          <button onClick={() => 
+            {
+            setCurrentQuestion(0);
+            setResponse(0);
+            setLink(0);
+            setShowResult(false);
+            setShowNo(false);}
+          }>Try Again</button>
+        </div>
+      ) :showResult ? (
+        <div className="result">
+          <h2>LETS GOOOOO</h2>
         </div>
       ) : (
         <>
