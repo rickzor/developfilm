@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Button } from 'react-native-web';
 import App from './App';
 
 const Quiz = ({ onClick, filmType, filmChemistry }) => {
@@ -18,35 +19,38 @@ const Quiz = ({ onClick, filmType, filmChemistry }) => {
 
     const questions = [
         {
-            text: "Do you have the required chemicals, a dev tank and a dark room or change bag?"
+            text: "Do you have developing chemicals, a dev tank and a dark room or change bag?",
+            id: 1
         },
         {
-            text: "Is the chemistry the proper temperature?"
+            text: "Is the chemistry the proper temperature?",
+            id: 2
         },
         {
-            text: "Is the film loaded in the dev tank?"
+            text: "Is the film loaded in the dev tank?",
+            id: 3
         }
     ];
 
     const handleAnswer = (userAnswer) => {
     
     if (userAnswer === "no") {
-        if (questions[currentQuestion].text === "Do you have the required chemicals, a dev tank, and a dark room or change bag?")
+        if (questions[currentQuestion].id === 1)
         {
              setResponse("consider buying the following items for developing "+ filmType.selectedFilm);
              setShowResponse(true);
              // show table with links to dev tank, change bag, thermometer, and chemistry
         }
 
-        if (questions[currentQuestion].text === "Is the chemistry the proper temperature?")
+        if (questions[currentQuestion].id === 2)
         {
-            setResponse("Color chemistry should be around 100F, while B&W can be room temperature.\nTo heat up the chemistry, place the developing chemicals in a bucket of hot tap water.\nWait a few minutes and optionally use a laser thermometer to check the temperature of the chemicals.");
+            setResponse("To heat up color chemistry, place the developing chemicals in a bucket of hot tap water and wait a few minutes. B&W chemistry can be used at room temp!");
             setShowResponse(true);
         }
 
-        if (questions[currentQuestion].text === "Is the film loaded in the dev tank?")
+        if (questions[currentQuestion].id === 3)
         {
-            setResponse("To load the dev tank...");
+            setResponse("Load your dev tank in a dark room or change bag following the instructions on the dev tank. We recommend watching the below video: ");
             setShowResponse(true);
             // show helpful video to load the dev tank
         }
@@ -64,18 +68,31 @@ const Quiz = ({ onClick, filmType, filmChemistry }) => {
 
     return (
         <div className="quiz-container">
-        {   showResponse ? (
-            <><div className="response">
-              <h2>{response}</h2></div></>
+        { showResponse ? (
+            <div style ={{
+            display: 'flex',
+            alignItems: 'center',
+            width: '800px',
+            textAlign:'center'}}
+            >
+            <h2>{response}</h2>
+            </div>
         ) : (<></>)}
         { showTable ? (
+            //show products table
             <></>
         ) : (<></>)}
         { showLoadDevTank ? (
+            //show loading dev tank video
             <></>
         ) : (<></>)}
         { showTryAgain ? (
-            <div className="result">
+            <div
+            style={{
+            display: 'flex',
+            alignItems: 'center',
+            marginTop: '10px',
+            justifyContent: 'center'}}>
             <button onClick={() => 
                 {
                 setResponse(null);
@@ -83,10 +100,10 @@ const Quiz = ({ onClick, filmType, filmChemistry }) => {
                 setShowResponse(false);
                 setShowResult(false);
                 setShowTryAgain(false);}
-            }>Try Again</button>
+            }>Start Over</button>
             </div>
         ) : showResult ? (
-            <div className="result">
+            <div>
             <h2>LETS GOOOOO</h2>
             <button onClick={onClick}>Next</button>
             </div>
@@ -95,7 +112,12 @@ const Quiz = ({ onClick, filmType, filmChemistry }) => {
             <div className="question-text">
                 {questions[currentQuestion].text}
             </div>
-            <div className="answer-buttons">
+            <div className="answer-buttons"
+            style={{
+            display: 'flex',
+            alignItems: 'center',
+            marginTop: '10px',
+            justifyContent: 'center'}}>
                 <button onClick={() => handleAnswer("yes")}>Yes</button>
                 <button onClick={() => handleAnswer("no")}>No</button>
             </div>
