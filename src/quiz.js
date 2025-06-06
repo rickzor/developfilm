@@ -5,7 +5,10 @@ const Quiz = ({ onClick, filmType, filmChemistry }) => {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [response, setResponse] = useState(0);
     const [showResult, setShowResult] = useState(false);
-    const [showNo, setShowNo] = useState(false);
+    const [showTryAgain, setShowTryAgain] = useState(false);
+    const [showTable, setShowTable] = useState(false);
+    const [showResponse, setShowResponse] = useState(false);
+    const [showLoadDevTank, setShowLoadDevTank] = useState(false);
     const devTankLink = "https://amzn.to/43JJSsf";
     const changeBagLink = "https://amzn.to/4mKJnXT";
     const thermometerLink = "https://amzn.to/43u1E3Y";
@@ -15,7 +18,7 @@ const Quiz = ({ onClick, filmType, filmChemistry }) => {
 
     const questions = [
         {
-            text: "Do you have the required chemicals, a dev tank, and a dark room or change bag?"
+            text: "Do you have the required chemicals, a dev tank and a dark room or change bag?"
         },
         {
             text: "Is the chemistry the proper temperature?"
@@ -31,22 +34,24 @@ const Quiz = ({ onClick, filmType, filmChemistry }) => {
         if (questions[currentQuestion].text === "Do you have the required chemicals, a dev tank, and a dark room or change bag?")
         {
              setResponse("consider buying the following items for developing "+ filmType.selectedFilm);
+             setShowResponse(true);
              // show table with links to dev tank, change bag, thermometer, and chemistry
         }
 
         if (questions[currentQuestion].text === "Is the chemistry the proper temperature?")
         {
-            setResponse("To heat up the chemistry...");
-            //show helpful information to heat up the chemistry
+            setResponse("Color chemistry should be around 100F, while B&W can be room temperature.\nTo heat up the chemistry, place the developing chemicals in a bucket of hot tap water.\nWait a few minutes and optionally use a laser thermometer to check the temperature of the chemicals.");
+            setShowResponse(true);
         }
 
         if (questions[currentQuestion].text === "Is the film loaded in the dev tank?")
         {
             setResponse("To load the dev tank...");
+            setShowResponse(true);
             // show helpful video to load the dev tank
         }
 
-        setShowNo(true);
+        setShowTryAgain(true);
     }
 
     const nextQuestion = currentQuestion + 1;
@@ -59,18 +64,28 @@ const Quiz = ({ onClick, filmType, filmChemistry }) => {
 
     return (
         <div className="quiz-container">
-        {showNo ? (
+        {   showResponse ? (
+            <><div className="response">
+              <h2>{response}</h2></div></>
+        ) : (<></>)}
+        { showTable ? (
+            <></>
+        ) : (<></>)}
+        { showLoadDevTank ? (
+            <></>
+        ) : (<></>)}
+        { showTryAgain ? (
             <div className="result">
-            <h2>{response}</h2>
             <button onClick={() => 
                 {
+                setResponse(null);
                 setCurrentQuestion(0);
-                setResponse(0);
+                setShowResponse(false);
                 setShowResult(false);
-                setShowNo(false);}
+                setShowTryAgain(false);}
             }>Try Again</button>
             </div>
-        ) :showResult ? (
+        ) : showResult ? (
             <div className="result">
             <h2>LETS GOOOOO</h2>
             <button onClick={onClick}>Next</button>
