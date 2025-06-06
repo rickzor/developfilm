@@ -4,7 +4,6 @@ import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import './index.css';
 import App from './App';
-import Quiz from './quiz';
 
 
 
@@ -12,6 +11,6 @@ import Quiz from './quiz';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-   <Quiz />
+  <App />
   </React.StrictMode>
 );

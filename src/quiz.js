@@ -1,53 +1,51 @@
 import React, { useState } from 'react';
+import App from './App';
 
-function Quiz() {
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [response, setResponse] = useState(0);
-  const [affiliateLink, setLink] = useState(0);
-  const [showResult, setShowResult] = useState(false);
-  const [showNo, setShowNo] = useState(false);
+const Quiz = ({ onClick, filmType, filmChemistry }) => {
+    const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [response, setResponse] = useState(0);
+    const [showResult, setShowResult] = useState(false);
+    const [showNo, setShowNo] = useState(false);
+    const devTankLink = "https://amzn.to/43JJSsf";
+    const changeBagLink = "https://amzn.to/4mKJnXT";
+    const thermometerLink = "https://amzn.to/43u1E3Y";
+    const chemistryLink = filmChemistry.selectedChemistry === "C-41" ? "https://amzn.to/3q1b2dH" 
+                        : filmChemistry.selectedChemistry === "E-6" ? "https://amzn.to/3HtUTXb" 
+                        : "https://amzn.to/3HrHH5g";
+
     const questions = [
         {
-            text: "Do you have a dev tank?"
-        },
-        {
-            text: "Do you have a dark room or change bag?"
-        },
-        {
-            text: "Do you have the developing chemistry mixed?"
+            text: "Do you have the required chemicals, a dev tank, and a dark room or change bag?"
         },
         {
             text: "Is the chemistry the proper temperature?"
+        },
+        {
+            text: "Is the film loaded in the dev tank?"
         }
     ];
 
-  const handleAnswer = (userAnswer) => {
+    const handleAnswer = (userAnswer) => {
     
-
     if (userAnswer === "no") {
-        if (questions[currentQuestion].text === "Do you have a dev tank?")
+        if (questions[currentQuestion].text === "Do you have the required chemicals, a dev tank, and a dark room or change bag?")
         {
-             setResponse("Consider purchasing a dev tank.");
-             setLink("https://amzn.to/4kDmAvt");
-        }
-
-        if (questions[currentQuestion].text === "Do you have a dark room or change bag?")
-        {
-            setResponse("Consider purchasing a change bag.");
-            setLink("https://amzn.to/4jMZgdG");
-        }
-
-        if (questions[currentQuestion].text === "Do you have the developing chemistry mixed?")
-        {
-            setResponse("Consider purchasing chemistry.");
-            setLink("https://amzn.to/45JUDgS");
+             setResponse("consider buying the following items for developing "+ filmType.selectedFilm);
+             // show table with links to dev tank, change bag, thermometer, and chemistry
         }
 
         if (questions[currentQuestion].text === "Is the chemistry the proper temperature?")
         {
-            setResponse("Consider purchasing a thermometer.");
-            setLink("https://amzn.to/45cgWvE");
+            setResponse("To heat up the chemistry...");
+            //show helpful information to heat up the chemistry
         }
+
+        if (questions[currentQuestion].text === "Is the film loaded in the dev tank?")
+        {
+            setResponse("To load the dev tank...");
+            // show helpful video to load the dev tank
+        }
+
         setShowNo(true);
     }
 
@@ -57,42 +55,39 @@ function Quiz() {
     } else {
       setShowResult(true);
     }
-  };
+    };
 
-  return (
-    <div className="quiz-container">
-      {showNo ? (
-        <div className="result">
-          <h2>{response}</h2>
-          <button onClick={(e) => {
-                    e.preventDefault();
-                    window.location.href=affiliateLink}}>Buy here</button>
-          <button onClick={() => 
-            {
-            setCurrentQuestion(0);
-            setResponse(0);
-            setLink(0);
-            setShowResult(false);
-            setShowNo(false);}
-          }>Try Again</button>
+    return (
+        <div className="quiz-container">
+        {showNo ? (
+            <div className="result">
+            <h2>{response}</h2>
+            <button onClick={() => 
+                {
+                setCurrentQuestion(0);
+                setResponse(0);
+                setShowResult(false);
+                setShowNo(false);}
+            }>Try Again</button>
+            </div>
+        ) :showResult ? (
+            <div className="result">
+            <h2>LETS GOOOOO</h2>
+            <button onClick={onClick}>Next</button>
+            </div>
+        ) : (
+            <>
+            <div className="question-text">
+                {questions[currentQuestion].text}
+            </div>
+            <div className="answer-buttons">
+                <button onClick={() => handleAnswer("yes")}>Yes</button>
+                <button onClick={() => handleAnswer("no")}>No</button>
+            </div>
+            </>
+        )}
         </div>
-      ) :showResult ? (
-        <div className="result">
-          <h2>LETS GOOOOO</h2>
-        </div>
-      ) : (
-        <>
-          <div className="question-text">
-            {questions[currentQuestion].text}
-          </div>
-          <div className="answer-buttons">
-            <button onClick={() => handleAnswer("yes")}>Yes</button>
-            <button onClick={() => handleAnswer("no")}>No</button>
-          </div>
-        </>
-      )}
-    </div>
-  );
+    );
 }
 
 export default Quiz;
