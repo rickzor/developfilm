@@ -37,22 +37,24 @@ const Quiz = ({ onClick, filmType, filmChemistry }) => {
     if (userAnswer === "no") {
         if (questions[currentQuestion].id === 1)
         {
-             setResponse("consider buying the following items for developing "+ filmType.selectedFilm);
+             setResponse("Consider buying the following items for developing "+ filmType.selectedFilm);
              setShowResponse(true);
+             setShowTable(true);
              // show table with links to dev tank, change bag, thermometer, and chemistry
         }
 
         if (questions[currentQuestion].id === 2)
         {
-            setResponse("To heat up color chemistry, place the developing chemicals in a bucket of hot tap water and wait a few minutes. B&W chemistry can be used at room temp!");
+            setResponse("To heat up color chemistry, place the developing chemicals in a bucket of hot tap water and wait a few minutes. B&W chemistry can be used at room temp.");
             setShowResponse(true);
         }
 
         if (questions[currentQuestion].id === 3)
         {
-            setResponse("Load your dev tank in a dark room or change bag following the instructions on the dev tank. We recommend watching the below video: ");
+            setResponse("Load your dev tank in a dark room or change bag by following the instructions on the dev tank. We recommend watching the below video: ");
             setShowResponse(true);
             // show helpful video to load the dev tank
+            setShowLoadDevTank(true);
         }
 
         setShowTryAgain(true);
@@ -80,11 +82,49 @@ const Quiz = ({ onClick, filmType, filmChemistry }) => {
         ) : (<></>)}
         { showTable ? (
             //show products table
-            <></>
+            <div
+            style={{
+            display: 'flex',
+            alignItems: 'center',
+            marginTop: '10px',
+            justifyContent: 'center'}}>
+            <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                <th>Product</th>
+                <th>Amazon Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>Developing Chemicals</td>
+                <td><a href={chemistryLink} target="_blank">{chemistryLink}</a></td>
+                </tr>
+                <tr>
+                <td>Dev Tank</td>
+                <td><a href={devTankLink} target="_blank">{devTankLink}</a></td>
+                </tr>
+                <tr>
+                <td>Change Bag</td>
+                <td><a href={changeBagLink} target="_blank">{changeBagLink}</a></td>
+                </tr>
+                <tr>
+                <td>Thermometer</td>
+                <td><a href={thermometerLink} target="_blank">{thermometerLink}</a></td>
+                </tr>
+            </tbody>
+            </table>
+            </div>
         ) : (<></>)}
         { showLoadDevTank ? (
-            //show loading dev tank video
-            <></>
+            <div
+            style={{
+            display: 'flex',
+            alignItems: 'center',
+            marginTop: '10px',
+            justifyContent: 'center'}}>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/MQKphVV4wuA?si=lAcs5W3AF53ZICO4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
         ) : (<></>)}
         { showTryAgain ? (
             <div
@@ -98,15 +138,26 @@ const Quiz = ({ onClick, filmType, filmChemistry }) => {
                 setResponse(null);
                 setCurrentQuestion(0);
                 setShowResponse(false);
+                setShowTable(false);
                 setShowResult(false);
+                setShowLoadDevTank(false);
                 setShowTryAgain(false);}
             }>Start Over</button>
             </div>
         ) : showResult ? (
-            <div>
-            <h2>LETS GOOOOO</h2>
+            <div style={{
+                textAlign: 'center',
+                width: '800px'
+            }}>
+            <h2>The next page will guide you through each step of developing {filmType.selectedFilm} using a series of timers. Please make sure you are in a well-ventilated space and ready to develep your film. Remember to use a funnel!</h2>
+            <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            marginTop: '10px',
+            justifyContent: 'center',
+            margin: '0 auto'}}>
             <button onClick={onClick}>Next</button>
-            </div>
+            </div></div>
         ) : (
             <>
             <div className="question-text">
